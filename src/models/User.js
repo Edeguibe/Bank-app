@@ -4,8 +4,9 @@ import validator from 'validator';
 import { validate } from 'graphql';
 
 const userSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   cpfCnpj: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },

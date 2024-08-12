@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const accountSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   accountNumber: {
     type: Number,
     required: true,
@@ -21,6 +22,10 @@ const accountSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+});
+
+accountSchema.pre('save', async (next) => {
+  this.accountNumber = Math.floor(Math.random() * 1000000) + 1;
 });
 
 export default mongoose.model('Account', accountSchema);
