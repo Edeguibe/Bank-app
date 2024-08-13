@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
-import { validate } from 'graphql';
+import { composeWithMongoose } from 'graphql-compose-mongoose';
+import { SchemaComposer } from 'graphql-compose';
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -46,4 +47,8 @@ userSchema.pre('save', async (next) => {
   }
 });
 
-export default mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+const UserTC = composeWithMongoose(User);
+
+export { User, UserTC };
