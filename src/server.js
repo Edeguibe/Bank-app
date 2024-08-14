@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
@@ -20,6 +20,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(authMiddleware);
+
 const server = new ApolloServer({ schema });
 
 const startServer = async () => {

@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { composeWithMongoose } from 'graphql-compose-mongoose';
-import { SchemaComposer } from 'graphql-compose';
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
