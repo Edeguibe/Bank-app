@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
-import validator from 'validator';
-import { composeWithMongoose } from 'graphql-compose-mongoose';
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+import validator from "validator";
+import { composeWithMongoose } from "graphql-compose-mongoose";
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: (email) => validator.isEmail(email),
-      message: 'Invalid email',
+      message: "Invalid email",
     },
   },
   password: {
@@ -33,9 +33,9 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre('save', async (next) => {
+userSchema.pre("save", async (next) => {
   try {
-    if (!this.isModified('password')) {
+    if (!this.isModified("password")) {
       next();
     }
     const hashedPassword = await bcrypt.hash(this.password, 10);
@@ -46,7 +46,7 @@ userSchema.pre('save', async (next) => {
   }
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 const UserTC = composeWithMongoose(User);
 

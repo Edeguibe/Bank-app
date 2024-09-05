@@ -19,7 +19,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(authMiddleware);
+// app.use(authMiddleware);
 
 const server = new ApolloServer({ schema });
 

@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { composeWithMongoose } from 'graphql-compose-mongoose';
+import mongoose from "mongoose";
+import { composeWithMongoose } from "graphql-compose-mongoose";
 
 const accountSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -14,7 +14,7 @@ const accountSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
   createdAt: {
@@ -23,14 +23,14 @@ const accountSchema = new mongoose.Schema({
   },
 });
 
-accountSchema.pre('save', function (next) {
+accountSchema.pre("save", function (next) {
   if (!this.accountNumber) {
     this.accountNumber = Math.floor(Math.random() * 1000000) + 1;
   }
   next();
 });
 
-const Account = mongoose.model('Account', accountSchema);
+const Account = mongoose.model("Account", accountSchema);
 const AccountTC = composeWithMongoose(Account);
 
 export { Account, AccountTC };

@@ -16,7 +16,7 @@ const resolvers = {
           throw new Error("Incorrect password");
         }
         return user;
-      }
+      },
     },
 
     createToken: {
@@ -31,8 +31,8 @@ const resolvers = {
           throw new Error("Incorrect password");
         }
         const token = generateToken(user);
-        return {token, user};
-      }
+        return { token, user };
+      },
     },
   },
 };
